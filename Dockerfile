@@ -26,6 +26,6 @@ RUN . $NVM_DIR/nvm.sh && \
 ENV NODE_PATH="$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules" \
     PATH="$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH"
 
-ADD nvm /usr/local/bin
+ADD nvm /usr/local/bin/nvm
 
 CMD ["bash"]

@@ -3,12 +3,13 @@ FROM debian:stretch
 MAINTAINER Liu Chong <mail@clojure.cn>
 
 RUN apt-get update && \
+    apt-get dist-upgrade -y && \
     apt-get install --no-install-recommends -y \
     sudo file curl wget git socat \
     ca-certificates openssl libssl-dev \
     build-essential autoconf libtool \
     nano vim emacs && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV NVM_DIR="/usr/local/.nvm" \
     NODE_VERSION_0="0.12.17" \

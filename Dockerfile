@@ -8,6 +8,7 @@ RUN apt-get update && \
     sudo file curl wget git socat \
     ca-certificates openssl libssl-dev \
     build-essential autoconf libtool \
+    python python3 \
     nano vim emacs && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -20,10 +21,10 @@ ENV NVM_DIR="/usr/local/.nvm" \
     NODE_VERSION_5="5.12.0" \
     NODE_VERSION_6="6.9.1" \
     NODE_VERSION_7="7.1.0" \
-    NODE_VERSION_IOJS="$NODE_VERSION_3" \
-    NODE_VERSION_LTS="$NODE_VERSION_6" \
-    NODE_VERSION_CURRENT="$NODE_VERSION_7" \
-    NODE_VERSION_DEFAULT="$NODE_VERSION_LTS"
+    NODE_VERSION_IOJS="3.3.1" \
+    NODE_VERSION_LTS="6.9.1" \
+    NODE_VERSION_CURRENT="7.1.0" \
+    NODE_VERSION_DEFAULT="6.9.1"
 
 RUN git clone https://github.com/creationix/nvm.git "$NVM_DIR" && \
     cd "$NVM_DIR" && \

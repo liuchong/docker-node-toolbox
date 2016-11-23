@@ -3,4 +3,4 @@ set -e
 
 . "$NVM_DIR/nvm.sh"
 
-exec "$@"
+eval "$@"

@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:testing
 
 MAINTAINER Liu Chong <mail@clojure.cn>
 
@@ -45,9 +45,6 @@ RUN . $NVM_DIR/nvm.sh && \
     nvm alias default $NODE_VERSION_DEFAULT && \
     nvm use default
 
-ENV NODE_PATH="$NVM_DIR/versions/node/v$NODE_VERSION_DEFAULT/lib/node_modules" \
-    PATH="$NVM_DIR/versions/node/v$NODE_VERSION_DEFAULT/bin:$PATH"
+ENTRYPOINT ["entrypoint.sh"]
 
-ADD nvm /usr/local/bin/nvm
-
-CMD ["bash"]
+CMD ["nvm"]

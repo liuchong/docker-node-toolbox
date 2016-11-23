@@ -17,7 +17,7 @@ ENV NVM_DIR="/usr/local/.nvm"
 RUN git clone https://github.com/creationix/nvm.git "$NVM_DIR" && \
     cd "$NVM_DIR" && \
     git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin` && \
-    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.bashrc
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/bash.bashrc
 
 RUN . $NVM_DIR/nvm.sh && \
     # v0
@@ -47,9 +47,5 @@ RUN . $NVM_DIR/nvm.sh && \
     nvm install 7.1.0 && \
     nvm alias current 7.1.0 && \
     nvm use lts
-
-ADD entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["nvm"]

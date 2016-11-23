@@ -45,6 +45,8 @@ RUN . $NVM_DIR/nvm.sh && \
     nvm alias default $NODE_VERSION_DEFAULT && \
     nvm use default
 
-ENTRYPOINT ["entrypoint.sh"]
+ADD entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["nvm"]

@@ -12,19 +12,7 @@ RUN apt-get update && \
     nano vim emacs && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV NVM_DIR="/usr/local/.nvm" \
-    NODE_VERSION_0="0.12.17" \
-    NODE_VERSION_1="1.8.4" \
-    NODE_VERSION_2="2.5.0" \
-    NODE_VERSION_3="3.3.1" \
-    NODE_VERSION_4="4.6.2" \
-    NODE_VERSION_5="5.12.0" \
-    NODE_VERSION_6="6.9.1" \
-    NODE_VERSION_7="7.1.0" \
-    NODE_VERSION_IOJS="3.3.1" \
-    NODE_VERSION_LTS="6.9.1" \
-    NODE_VERSION_CURRENT="7.1.0" \
-    NODE_VERSION_DEFAULT="6.9.1"
+ENV NVM_DIR="/usr/local/.nvm"
 
 RUN git clone https://github.com/creationix/nvm.git "$NVM_DIR" && \
     cd "$NVM_DIR" && \
@@ -32,19 +20,33 @@ RUN git clone https://github.com/creationix/nvm.git "$NVM_DIR" && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.bashrc
 
 RUN . $NVM_DIR/nvm.sh && \
-    nvm install $NODE_VERSION_0 && \
-    nvm install $NODE_VERSION_1 && \
-    nvm install $NODE_VERSION_2 && \
-    nvm install $NODE_VERSION_3 && \
-    nvm install $NODE_VERSION_4 && \
-    nvm install $NODE_VERSION_5 && \
-    nvm install $NODE_VERSION_6 && \
-    nvm install $NODE_VERSION_7 && \
-    nvm alias iojs $NODE_VERSION_IOJS && \
-    nvm alias lts $NODE_VERSION_LTS && \
-    nvm alias current $NODE_VERSION_CURRENT && \
-    nvm alias default $NODE_VERSION_DEFAULT && \
-    nvm use default
+    # v0
+    nvm install 0.12.17 && \
+    nvm alias v0 0.12.17 && \
+    # v1
+    nvm install 1.8.4 && \
+    nvm alias v1 1.8.4 && \
+    # v2
+    nvm install 2.5.0 && \
+    nvm alias v2 2.5.0 && \
+    # v3, iojs
+    nvm install 3.3.1 && \
+    nvm alias v3 3.3.1 && \
+    nvm alias iojs 3.3.1 && \
+    # v4
+    nvm install 4.6.2 && \
+    nvm alias v4 4.6.2 && \
+    # v5
+    nvm install 5.12.0 && \
+    nvm alias v5 5.12.0 && \
+    # v6, lts
+    nvm install 6.9.1 && \
+    nvm alias v6 6.9.1 && \
+    nvm alias lts 6.9.1 && \
+    # v7, current
+    nvm install 7.1.0 && \
+    nvm alias current 7.1.0 && \
+    nvm use lts
 
 ADD entrypoint.sh /entrypoint.sh
 

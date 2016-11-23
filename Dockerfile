@@ -2,6 +2,8 @@ FROM debian:testing
 
 MAINTAINER Liu Chong <mail@clojure.cn>
 
+ENTRYPOINT ["/bin/bash", "--login", "-c"]
+
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install --no-install-recommends -y \
@@ -17,7 +19,7 @@ ENV NVM_DIR="/usr/local/.nvm"
 RUN git clone https://github.com/creationix/nvm.git "$NVM_DIR" && \
     cd "$NVM_DIR" && \
     git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin` && \
-    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/bash.bashrc
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/profile
 
 RUN . $NVM_DIR/nvm.sh && \
     # v0

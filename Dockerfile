@@ -22,32 +22,8 @@ RUN git clone https://github.com/creationix/nvm.git "$NVM_DIR" && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/profile
 
 RUN . $NVM_DIR/nvm.sh && \
-    # v0
-    nvm install 0.12.17 && \
-    nvm alias v0 0.12.17 && \
-    # v1
-    nvm install 1.8.4 && \
-    nvm alias v1 1.8.4 && \
-    # v2
-    nvm install 2.5.0 && \
-    nvm alias v2 2.5.0 && \
-    # v3, iojs
-    nvm install 3.3.1 && \
-    nvm alias v3 3.3.1 && \
-    nvm alias iojs 3.3.1 && \
-    # v4
-    nvm install 4.6.2 && \
-    nvm alias v4 4.6.2 && \
-    # v5
-    nvm install 5.12.0 && \
-    nvm alias v5 5.12.0 && \
-    # v6, lts
-    nvm install 6.9.1 && \
-    nvm alias v6 6.9.1 && \
-    nvm alias lts 6.9.1 && \
-    # v7, current
-    nvm install 7.1.0 && \
-    nvm alias current 7.1.0 && \
-    nvm use lts
+    for v in \
+    `seq 0 $(nvm ls-remote | tail -1 | sed 's/.*v\([0-9][0-9]*\)\..*/\1/')`\
+    ; do nvm install $v; done
 
 CMD ["nvm"]
